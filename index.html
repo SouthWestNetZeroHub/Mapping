@@ -1,0 +1,1333 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/RedlineBoundary_1.js"></script>
+        <script src="data/SWLABoundaries_2.js"></script>
+        <script src="data/CommunityEnergyGroupOperationalAreas_3.js"></script>
+        <script src="data/DormantorStalledGroups_4.js"></script>
+        <script src="data/AlliedThirdSectorCommercialOrgs_5.js"></script>
+        <script src="data/TransitionTownFoENetwork_6.js"></script>
+        <script src="data/CommunityEnergyGroupsTier0orSatellite_7.js"></script>
+        <script src="data/CommunityEnergyGroupsTier1_8.js"></script>
+        <script src="data/CommunityEnergyGroupsTier2_9.js"></script>
+        <script src="data/CommunityEnergyGroupsTier3_10.js"></script>
+        <script src="data/CommunityEnergyGroupsTier4_11.js"></script>
+        <script src="data/SSENDemandHeadroomRAGPoints_12.js"></script>
+        <script src="data/NGEDDemandHeadroomPoints_13.js"></script>
+        <script src="data/GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14.js"></script>
+        <script src="data/GenerationCapacityHeadroomRed5kmBuffer_15.js"></script>
+        <script src="data/GenerationCapacityHeadroomGreen5kmBuffer_16.js"></script>
+        <script src="data/DNODivide_17.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[49.974206246456006,-4.147835254128066],[52.169550031925496,0.3516567816833129]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_OpenStreetMap_0');
+        map.getPane('pane_OpenStreetMap_0').style.zIndex = 400;
+        var layer_OpenStreetMap_0 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OpenStreetMap_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OpenStreetMap_0;
+        map.addLayer(layer_OpenStreetMap_0);
+        function pop_RedlineBoundary_1(feature, layer) {
+        }
+
+        function style_RedlineBoundary_1_0() {
+            return {
+                pane: 'pane_RedlineBoundary_1',
+                opacity: 1,
+                color: 'rgba(203,24,24,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(216,71,58,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_RedlineBoundary_1');
+        map.getPane('pane_RedlineBoundary_1').style.zIndex = 401;
+        map.getPane('pane_RedlineBoundary_1').style['mix-blend-mode'] = 'normal';
+        var layer_RedlineBoundary_1 = new L.geoJson(json_RedlineBoundary_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_RedlineBoundary_1',
+            layerName: 'layer_RedlineBoundary_1',
+            pane: 'pane_RedlineBoundary_1',
+            onEachFeature: pop_RedlineBoundary_1,
+            style: style_RedlineBoundary_1_0,
+        });
+        bounds_group.addLayer(layer_RedlineBoundary_1);
+        function pop_SWLABoundaries_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Name</strong><br />' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>layer</strong><br />' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SWLABoundaries_2_0() {
+            return {
+                pane: 'pane_SWLABoundaries_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.497)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(136,247,124,0.497)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_SWLABoundaries_2');
+        map.getPane('pane_SWLABoundaries_2').style.zIndex = 402;
+        map.getPane('pane_SWLABoundaries_2').style['mix-blend-mode'] = 'normal';
+        var layer_SWLABoundaries_2 = new L.geoJson(json_SWLABoundaries_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SWLABoundaries_2',
+            layerName: 'layer_SWLABoundaries_2',
+            pane: 'pane_SWLABoundaries_2',
+            onEachFeature: pop_SWLABoundaries_2,
+            style: style_SWLABoundaries_2_0,
+        });
+        bounds_group.addLayer(layer_SWLABoundaries_2);
+        map.addLayer(layer_SWLABoundaries_2);
+        function pop_CommunityEnergyGroupOperationalAreas_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Name</strong><br />' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Associated Community Energy Group</strong><br />' + (feature.properties['Associated Community Energy Group'] !== null ? autolinker.link(feature.properties['Associated Community Energy Group'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CommunityEnergyGroupOperationalAreas_3_0() {
+            return {
+                pane: 'pane_CommunityEnergyGroupOperationalAreas_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.602)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(152,125,183,0.602)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_CommunityEnergyGroupOperationalAreas_3');
+        map.getPane('pane_CommunityEnergyGroupOperationalAreas_3').style.zIndex = 403;
+        map.getPane('pane_CommunityEnergyGroupOperationalAreas_3').style['mix-blend-mode'] = 'normal';
+        var layer_CommunityEnergyGroupOperationalAreas_3 = new L.geoJson(json_CommunityEnergyGroupOperationalAreas_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_CommunityEnergyGroupOperationalAreas_3',
+            layerName: 'layer_CommunityEnergyGroupOperationalAreas_3',
+            pane: 'pane_CommunityEnergyGroupOperationalAreas_3',
+            onEachFeature: pop_CommunityEnergyGroupOperationalAreas_3,
+            style: style_CommunityEnergyGroupOperationalAreas_3_0,
+        });
+        bounds_group.addLayer(layer_CommunityEnergyGroupOperationalAreas_3);
+        map.addLayer(layer_CommunityEnergyGroupOperationalAreas_3);
+        function pop_DormantorStalledGroups_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>fid</strong><br />' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Group Name</strong><br />' + (feature.properties['Group Name'] !== null ? autolinker.link(feature.properties['Group Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Area</strong><br />' + (feature.properties['Area'] !== null ? autolinker.link(feature.properties['Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>lat</strong><br />' + (feature.properties['lat'] !== null ? autolinker.link(feature.properties['lat'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>long</strong><br />' + (feature.properties['long'] !== null ? autolinker.link(feature.properties['long'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RCEF Project?</strong><br />' + (feature.properties['RCEF Project?'] !== null ? autolinker.link(feature.properties['RCEF Project?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Operational or Dormant?</strong><br />' + (feature.properties['Operational or Dormant?'] !== null ? autolinker.link(feature.properties['Operational or Dormant?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Project or Group?</strong><br />' + (feature.properties['Project or Group?'] !== null ? autolinker.link(feature.properties['Project or Group?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Project Partner</strong><br />' + (feature.properties['Project Partner'] !== null ? autolinker.link(feature.properties['Project Partner'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Projects delivered</strong><br />' + (feature.properties['Projects delivered'] !== null ? autolinker.link(feature.properties['Projects delivered'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Projects in development</strong><br />' + (feature.properties['Projects in development'] !== null ? autolinker.link(feature.properties['Projects in development'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Tier</strong><br />' + (feature.properties['Tier'] !== null ? autolinker.link(feature.properties['Tier'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Website</strong><br />' + (feature.properties['Website'] !== null ? autolinker.link(feature.properties['Website'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Current count - 105 groups (please delete any duplicates)</strong><br />' + (feature.properties['Current count - 105 groups (please delete any duplicates)'] !== null ? autolinker.link(feature.properties['Current count - 105 groups (please delete any duplicates)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>layer</strong><br />' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_DormantorStalledGroups_4_0() {
+            return {
+                pane: 'pane_DormantorStalledGroups_4',
+                radius: 3.6,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(177,104,9,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_DormantorStalledGroups_4');
+        map.getPane('pane_DormantorStalledGroups_4').style.zIndex = 404;
+        map.getPane('pane_DormantorStalledGroups_4').style['mix-blend-mode'] = 'normal';
+        var layer_DormantorStalledGroups_4 = new L.geoJson(json_DormantorStalledGroups_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_DormantorStalledGroups_4',
+            layerName: 'layer_DormantorStalledGroups_4',
+            pane: 'pane_DormantorStalledGroups_4',
+            onEachFeature: pop_DormantorStalledGroups_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_DormantorStalledGroups_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_DormantorStalledGroups_4);
+        function pop_AlliedThirdSectorCommercialOrgs_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Organisation Name</strong><br />' + (feature.properties['Organisation Name'] !== null ? autolinker.link(feature.properties['Organisation Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Registered Address</strong><br />' + (feature.properties['Registered Address'] !== null ? autolinker.link(feature.properties['Registered Address'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_AlliedThirdSectorCommercialOrgs_5_0() {
+            return {
+                pane: 'pane_AlliedThirdSectorCommercialOrgs_5',
+                shape: 'diamond',
+                radius: 3.6,
+                opacity: 1,
+                color: 'rgba(50,87,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(228,186,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_AlliedThirdSectorCommercialOrgs_5');
+        map.getPane('pane_AlliedThirdSectorCommercialOrgs_5').style.zIndex = 405;
+        map.getPane('pane_AlliedThirdSectorCommercialOrgs_5').style['mix-blend-mode'] = 'normal';
+        var layer_AlliedThirdSectorCommercialOrgs_5 = new L.geoJson(json_AlliedThirdSectorCommercialOrgs_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_AlliedThirdSectorCommercialOrgs_5',
+            layerName: 'layer_AlliedThirdSectorCommercialOrgs_5',
+            pane: 'pane_AlliedThirdSectorCommercialOrgs_5',
+            onEachFeature: pop_AlliedThirdSectorCommercialOrgs_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_AlliedThirdSectorCommercialOrgs_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_AlliedThirdSectorCommercialOrgs_5);
+        function pop_TransitionTownFoENetwork_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Type</strong><br />' + (feature.properties['Type'] !== null ? autolinker.link(feature.properties['Type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Post Code</strong><br />' + (feature.properties['Post Code'] !== null ? autolinker.link(feature.properties['Post Code'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Group Name</strong><br />' + (feature.properties['Group Name'] !== null ? autolinker.link(feature.properties['Group Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Area</strong><br />' + (feature.properties['Area'] !== null ? autolinker.link(feature.properties['Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_TransitionTownFoENetwork_6_0() {
+            return {
+                pane: 'pane_TransitionTownFoENetwork_6',
+                shape: 'triangle',
+                radius: 3.6,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(62,115,239,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_TransitionTownFoENetwork_6');
+        map.getPane('pane_TransitionTownFoENetwork_6').style.zIndex = 406;
+        map.getPane('pane_TransitionTownFoENetwork_6').style['mix-blend-mode'] = 'normal';
+        var layer_TransitionTownFoENetwork_6 = new L.geoJson(json_TransitionTownFoENetwork_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_TransitionTownFoENetwork_6',
+            layerName: 'layer_TransitionTownFoENetwork_6',
+            pane: 'pane_TransitionTownFoENetwork_6',
+            onEachFeature: pop_TransitionTownFoENetwork_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_TransitionTownFoENetwork_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_TransitionTownFoENetwork_6);
+        function pop_CommunityEnergyGroupsTier0orSatellite_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Group Name</strong><br />' + (feature.properties['Group Name'] !== null ? autolinker.link(feature.properties['Group Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Area</strong><br />' + (feature.properties['Area'] !== null ? autolinker.link(feature.properties['Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RCEF Project?</strong><br />' + (feature.properties['RCEF Project?'] !== null ? autolinker.link(feature.properties['RCEF Project?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Operational or Dormant?</strong><br />' + (feature.properties['Operational or Dormant?'] !== null ? autolinker.link(feature.properties['Operational or Dormant?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Project or Group?</strong><br />' + (feature.properties['Project or Group?'] !== null ? autolinker.link(feature.properties['Project or Group?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Project Partner</strong><br />' + (feature.properties['Project Partner'] !== null ? autolinker.link(feature.properties['Project Partner'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Projects delivered</strong><br />' + (feature.properties['Projects delivered'] !== null ? autolinker.link(feature.properties['Projects delivered'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Projects in development</strong><br />' + (feature.properties['Projects in development'] !== null ? autolinker.link(feature.properties['Projects in development'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Tier</strong><br />' + (feature.properties['Tier'] !== null ? autolinker.link(feature.properties['Tier'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Website</strong><br />' + (feature.properties['Website'] !== null ? autolinker.link(feature.properties['Website'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CommunityEnergyGroupsTier0orSatellite_7_0(feature) {
+            switch(String(feature.properties['Tier'])) {
+                case '0':
+                    return {
+                pane: 'pane_CommunityEnergyGroupsTier0orSatellite_7',
+                radius: 3.6,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(62,207,239,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_CommunityEnergyGroupsTier0orSatellite_7');
+        map.getPane('pane_CommunityEnergyGroupsTier0orSatellite_7').style.zIndex = 407;
+        map.getPane('pane_CommunityEnergyGroupsTier0orSatellite_7').style['mix-blend-mode'] = 'normal';
+        var layer_CommunityEnergyGroupsTier0orSatellite_7 = new L.geoJson(json_CommunityEnergyGroupsTier0orSatellite_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_CommunityEnergyGroupsTier0orSatellite_7',
+            layerName: 'layer_CommunityEnergyGroupsTier0orSatellite_7',
+            pane: 'pane_CommunityEnergyGroupsTier0orSatellite_7',
+            onEachFeature: pop_CommunityEnergyGroupsTier0orSatellite_7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_CommunityEnergyGroupsTier0orSatellite_7_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_CommunityEnergyGroupsTier0orSatellite_7);
+        function pop_CommunityEnergyGroupsTier1_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Group Name</strong><br />' + (feature.properties['Group Name'] !== null ? autolinker.link(feature.properties['Group Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Area</strong><br />' + (feature.properties['Area'] !== null ? autolinker.link(feature.properties['Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RCEF Project?</strong><br />' + (feature.properties['RCEF Project?'] !== null ? autolinker.link(feature.properties['RCEF Project?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Operational or Dormant?</strong><br />' + (feature.properties['Operational or Dormant?'] !== null ? autolinker.link(feature.properties['Operational or Dormant?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Project or Group?</strong><br />' + (feature.properties['Project or Group?'] !== null ? autolinker.link(feature.properties['Project or Group?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Project Partner</strong><br />' + (feature.properties['Project Partner'] !== null ? autolinker.link(feature.properties['Project Partner'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Projects delivered</strong><br />' + (feature.properties['Projects delivered'] !== null ? autolinker.link(feature.properties['Projects delivered'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Projects in development</strong><br />' + (feature.properties['Projects in development'] !== null ? autolinker.link(feature.properties['Projects in development'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Tier</strong><br />' + (feature.properties['Tier'] !== null ? autolinker.link(feature.properties['Tier'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Website</strong><br />' + (feature.properties['Website'] !== null ? autolinker.link(feature.properties['Website'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CommunityEnergyGroupsTier1_8_0(feature) {
+            switch(String(feature.properties['Tier'])) {
+                case '1':
+                    return {
+                pane: 'pane_CommunityEnergyGroupsTier1_8',
+                radius: 3.6,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(215,25,28,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_CommunityEnergyGroupsTier1_8');
+        map.getPane('pane_CommunityEnergyGroupsTier1_8').style.zIndex = 408;
+        map.getPane('pane_CommunityEnergyGroupsTier1_8').style['mix-blend-mode'] = 'normal';
+        var layer_CommunityEnergyGroupsTier1_8 = new L.geoJson(json_CommunityEnergyGroupsTier1_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_CommunityEnergyGroupsTier1_8',
+            layerName: 'layer_CommunityEnergyGroupsTier1_8',
+            pane: 'pane_CommunityEnergyGroupsTier1_8',
+            onEachFeature: pop_CommunityEnergyGroupsTier1_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_CommunityEnergyGroupsTier1_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_CommunityEnergyGroupsTier1_8);
+        map.addLayer(layer_CommunityEnergyGroupsTier1_8);
+        function pop_CommunityEnergyGroupsTier2_9(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Group Name</strong><br />' + (feature.properties['Group Name'] !== null ? autolinker.link(feature.properties['Group Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Area</strong><br />' + (feature.properties['Area'] !== null ? autolinker.link(feature.properties['Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RCEF Project?</strong><br />' + (feature.properties['RCEF Project?'] !== null ? autolinker.link(feature.properties['RCEF Project?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Operational or Dormant?</strong><br />' + (feature.properties['Operational or Dormant?'] !== null ? autolinker.link(feature.properties['Operational or Dormant?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Project or Group?</strong><br />' + (feature.properties['Project or Group?'] !== null ? autolinker.link(feature.properties['Project or Group?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Project Partner</strong><br />' + (feature.properties['Project Partner'] !== null ? autolinker.link(feature.properties['Project Partner'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Projects delivered</strong><br />' + (feature.properties['Projects delivered'] !== null ? autolinker.link(feature.properties['Projects delivered'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Projects in development</strong><br />' + (feature.properties['Projects in development'] !== null ? autolinker.link(feature.properties['Projects in development'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Tier</strong><br />' + (feature.properties['Tier'] !== null ? autolinker.link(feature.properties['Tier'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Website</strong><br />' + (feature.properties['Website'] !== null ? autolinker.link(feature.properties['Website'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CommunityEnergyGroupsTier2_9_0(feature) {
+            switch(String(feature.properties['Tier'])) {
+                case '2':
+                    return {
+                pane: 'pane_CommunityEnergyGroupsTier2_9',
+                radius: 3.6,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(254,201,129,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_CommunityEnergyGroupsTier2_9');
+        map.getPane('pane_CommunityEnergyGroupsTier2_9').style.zIndex = 409;
+        map.getPane('pane_CommunityEnergyGroupsTier2_9').style['mix-blend-mode'] = 'normal';
+        var layer_CommunityEnergyGroupsTier2_9 = new L.geoJson(json_CommunityEnergyGroupsTier2_9, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_CommunityEnergyGroupsTier2_9',
+            layerName: 'layer_CommunityEnergyGroupsTier2_9',
+            pane: 'pane_CommunityEnergyGroupsTier2_9',
+            onEachFeature: pop_CommunityEnergyGroupsTier2_9,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_CommunityEnergyGroupsTier2_9_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_CommunityEnergyGroupsTier2_9);
+        map.addLayer(layer_CommunityEnergyGroupsTier2_9);
+        function pop_CommunityEnergyGroupsTier3_10(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Group Name</strong><br />' + (feature.properties['Group Name'] !== null ? autolinker.link(feature.properties['Group Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Area</strong><br />' + (feature.properties['Area'] !== null ? autolinker.link(feature.properties['Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RCEF Project?</strong><br />' + (feature.properties['RCEF Project?'] !== null ? autolinker.link(feature.properties['RCEF Project?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Operational or Dormant?</strong><br />' + (feature.properties['Operational or Dormant?'] !== null ? autolinker.link(feature.properties['Operational or Dormant?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Project or Group?</strong><br />' + (feature.properties['Project or Group?'] !== null ? autolinker.link(feature.properties['Project or Group?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Project Partner</strong><br />' + (feature.properties['Project Partner'] !== null ? autolinker.link(feature.properties['Project Partner'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Projects delivered</strong><br />' + (feature.properties['Projects delivered'] !== null ? autolinker.link(feature.properties['Projects delivered'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Projects in development</strong><br />' + (feature.properties['Projects in development'] !== null ? autolinker.link(feature.properties['Projects in development'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Tier</strong><br />' + (feature.properties['Tier'] !== null ? autolinker.link(feature.properties['Tier'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Website</strong><br />' + (feature.properties['Website'] !== null ? autolinker.link(feature.properties['Website'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CommunityEnergyGroupsTier3_10_0(feature) {
+            switch(String(feature.properties['Tier'])) {
+                case '3':
+                    return {
+                pane: 'pane_CommunityEnergyGroupsTier3_10',
+                radius: 3.6,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,198,36,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_CommunityEnergyGroupsTier3_10');
+        map.getPane('pane_CommunityEnergyGroupsTier3_10').style.zIndex = 410;
+        map.getPane('pane_CommunityEnergyGroupsTier3_10').style['mix-blend-mode'] = 'normal';
+        var layer_CommunityEnergyGroupsTier3_10 = new L.geoJson(json_CommunityEnergyGroupsTier3_10, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_CommunityEnergyGroupsTier3_10',
+            layerName: 'layer_CommunityEnergyGroupsTier3_10',
+            pane: 'pane_CommunityEnergyGroupsTier3_10',
+            onEachFeature: pop_CommunityEnergyGroupsTier3_10,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_CommunityEnergyGroupsTier3_10_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_CommunityEnergyGroupsTier3_10);
+        map.addLayer(layer_CommunityEnergyGroupsTier3_10);
+        function pop_CommunityEnergyGroupsTier4_11(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Group Name</strong><br />' + (feature.properties['Group Name'] !== null ? autolinker.link(feature.properties['Group Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Area</strong><br />' + (feature.properties['Area'] !== null ? autolinker.link(feature.properties['Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RCEF Project?</strong><br />' + (feature.properties['RCEF Project?'] !== null ? autolinker.link(feature.properties['RCEF Project?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Operational or Dormant?</strong><br />' + (feature.properties['Operational or Dormant?'] !== null ? autolinker.link(feature.properties['Operational or Dormant?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Project or Group?</strong><br />' + (feature.properties['Project or Group?'] !== null ? autolinker.link(feature.properties['Project or Group?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Project Partner</strong><br />' + (feature.properties['Project Partner'] !== null ? autolinker.link(feature.properties['Project Partner'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Projects delivered</strong><br />' + (feature.properties['Projects delivered'] !== null ? autolinker.link(feature.properties['Projects delivered'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Projects in development</strong><br />' + (feature.properties['Projects in development'] !== null ? autolinker.link(feature.properties['Projects in development'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Tier</strong><br />' + (feature.properties['Tier'] !== null ? autolinker.link(feature.properties['Tier'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Website</strong><br />' + (feature.properties['Website'] !== null ? autolinker.link(feature.properties['Website'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CommunityEnergyGroupsTier4_11_0(feature) {
+            switch(String(feature.properties['Tier'])) {
+                case '4':
+                    return {
+                pane: 'pane_CommunityEnergyGroupsTier4_11',
+                radius: 3.6,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(158,8,184,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_CommunityEnergyGroupsTier4_11');
+        map.getPane('pane_CommunityEnergyGroupsTier4_11').style.zIndex = 411;
+        map.getPane('pane_CommunityEnergyGroupsTier4_11').style['mix-blend-mode'] = 'normal';
+        var layer_CommunityEnergyGroupsTier4_11 = new L.geoJson(json_CommunityEnergyGroupsTier4_11, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_CommunityEnergyGroupsTier4_11',
+            layerName: 'layer_CommunityEnergyGroupsTier4_11',
+            pane: 'pane_CommunityEnergyGroupsTier4_11',
+            onEachFeature: pop_CommunityEnergyGroupsTier4_11,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_CommunityEnergyGroupsTier4_11_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_CommunityEnergyGroupsTier4_11);
+        map.addLayer(layer_CommunityEnergyGroupsTier4_11);
+        function pop_SSENDemandHeadroomRAGPoints_12(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Area</strong><br />' + (feature.properties['Area'] !== null ? autolinker.link(feature.properties['Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Primary Substation Name</strong><br />' + (feature.properties['Primary Substation Name'] !== null ? autolinker.link(feature.properties['Primary Substation Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>GSP Parent</strong><br />' + (feature.properties['GSP Parent'] !== null ? autolinker.link(feature.properties['GSP Parent'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>BSP Parent</strong><br />' + (feature.properties['BSP Parent'] !== null ? autolinker.link(feature.properties['BSP Parent'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Break Fault Level vs Rating (kA)</strong><br />' + (feature.properties['Break Fault Level vs Rating (kA)'] !== null ? autolinker.link(feature.properties['Break Fault Level vs Rating (kA)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Location Latitude</strong><br />' + (feature.properties['Location Latitude'] !== null ? autolinker.link(feature.properties['Location Latitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Location Longitude</strong><br />' + (feature.properties['Location Longitude'] !== null ? autolinker.link(feature.properties['Location Longitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Location Grid Ref</strong><br />' + (feature.properties['Location Grid Ref'] !== null ? autolinker.link(feature.properties['Location Grid Ref'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Nameplate Rating (MVA)</strong><br />' + (feature.properties['Nameplate Rating (MVA)'] !== null ? autolinker.link(feature.properties['Nameplate Rating (MVA)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Sum of quoted generation (MVA)</strong><br />' + (feature.properties['Sum of quoted generation (MVA)'] !== null ? autolinker.link(feature.properties['Sum of quoted generation (MVA)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Minimum Load (MW)</strong><br />' + (feature.properties['Minimum Load (MW)'] !== null ? autolinker.link(feature.properties['Minimum Load (MW)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Maximum Load (MW)</strong><br />' + (feature.properties['Maximum Load (MW)'] !== null ? autolinker.link(feature.properties['Maximum Load (MW)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Contracted Generation (MVA)</strong><br />' + (feature.properties['Contracted Generation (MVA)'] !== null ? autolinker.link(feature.properties['Contracted Generation (MVA)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Available Headroom Capacity (MVA)</strong><br />' + (feature.properties['Available Headroom Capacity (MVA)'] !== null ? autolinker.link(feature.properties['Available Headroom Capacity (MVA)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Reverse Powerflow Capability (%)</strong><br />' + (feature.properties['Reverse Powerflow Capability (%)'] !== null ? autolinker.link(feature.properties['Reverse Powerflow Capability (%)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Upstream status</strong><br />' + (feature.properties['Upstream status'] !== null ? autolinker.link(feature.properties['Upstream status'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Transmission Works</strong><br />' + (feature.properties['Transmission Works'] !== null ? autolinker.link(feature.properties['Transmission Works'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Transmission reinforcement date</strong><br />' + (feature.properties['Transmission reinforcement date'] !== null ? autolinker.link(feature.properties['Transmission reinforcement date'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Downstream status</strong><br />' + (feature.properties['Downstream status'] !== null ? autolinker.link(feature.properties['Downstream status'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Distribution Works</strong><br />' + (feature.properties['Distribution Works'] !== null ? autolinker.link(feature.properties['Distribution Works'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Distribution reinforcement date</strong><br />' + (feature.properties['Distribution reinforcement date'] !== null ? autolinker.link(feature.properties['Distribution reinforcement date'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>SoW needed?</strong><br />' + (feature.properties['SoW needed?'] !== null ? autolinker.link(feature.properties['SoW needed?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Part of SWAN?</strong><br />' + (feature.properties['Part of SWAN?'] !== null ? autolinker.link(feature.properties['Part of SWAN?'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Other constraints</strong><br />' + (feature.properties['Other constraints'] !== null ? autolinker.link(feature.properties['Other constraints'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Voltage (kV)</strong><br />' + (feature.properties['Voltage (kV)'] !== null ? autolinker.link(feature.properties['Voltage (kV)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Site Classification</strong><br />' + (feature.properties['Site Classification'] !== null ? autolinker.link(feature.properties['Site Classification'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SSENDemandHeadroomRAGPoints_12_0(feature) {
+            switch(String(feature.properties['Site Classification'])) {
+                case 'Amber':
+                    return {
+                pane: 'pane_SSENDemandHeadroomRAGPoints_12',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(247,225,55,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(250,255,57,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Green':
+                    return {
+                pane: 'pane_SSENDemandHeadroomRAGPoints_12',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(61,128,53,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(84,176,74,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Red':
+                    return {
+                pane: 'pane_SSENDemandHeadroomRAGPoints_12',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(128,17,25,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,30,42,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_SSENDemandHeadroomRAGPoints_12');
+        map.getPane('pane_SSENDemandHeadroomRAGPoints_12').style.zIndex = 412;
+        map.getPane('pane_SSENDemandHeadroomRAGPoints_12').style['mix-blend-mode'] = 'normal';
+        var layer_SSENDemandHeadroomRAGPoints_12 = new L.geoJson(json_SSENDemandHeadroomRAGPoints_12, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SSENDemandHeadroomRAGPoints_12',
+            layerName: 'layer_SSENDemandHeadroomRAGPoints_12',
+            pane: 'pane_SSENDemandHeadroomRAGPoints_12',
+            onEachFeature: pop_SSENDemandHeadroomRAGPoints_12,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_SSENDemandHeadroomRAGPoints_12_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_SSENDemandHeadroomRAGPoints_12);
+        function pop_NGEDDemandHeadroomPoints_13(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Network Reference ID</strong><br />' + (feature.properties['Network Reference ID'] !== null ? autolinker.link(feature.properties['Network Reference ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Parent Network Reference ID</strong><br />' + (feature.properties['Parent Network Reference ID'] !== null ? autolinker.link(feature.properties['Parent Network Reference ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Substation Name</strong><br />' + (feature.properties['Substation Name'] !== null ? autolinker.link(feature.properties['Substation Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Substation Number</strong><br />' + (feature.properties['Substation Number'] !== null ? autolinker.link(feature.properties['Substation Number'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Asset Type</strong><br />' + (feature.properties['Asset Type'] !== null ? autolinker.link(feature.properties['Asset Type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Latitude</strong><br />' + (feature.properties['Latitude'] !== null ? autolinker.link(feature.properties['Latitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Longitude</strong><br />' + (feature.properties['Longitude'] !== null ? autolinker.link(feature.properties['Longitude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Fault Level Headroom</strong><br />' + (feature.properties['Fault Level Headroom'] !== null ? autolinker.link(feature.properties['Fault Level Headroom'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Group</strong><br />' + (feature.properties['Group'] !== null ? autolinker.link(feature.properties['Group'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Bulk Supply Point Name</strong><br />' + (feature.properties['Bulk Supply Point Name'] !== null ? autolinker.link(feature.properties['Bulk Supply Point Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Primary Substation</strong><br />' + (feature.properties['Primary Substation'] !== null ? autolinker.link(feature.properties['Primary Substation'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Upstream Voltage</strong><br />' + (feature.properties['Upstream Voltage'] !== null ? autolinker.link(feature.properties['Upstream Voltage'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Downstream Voltage</strong><br />' + (feature.properties['Downstream Voltage'] !== null ? autolinker.link(feature.properties['Downstream Voltage'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Firm Capacity of Substation MVA</strong><br />' + (feature.properties['Firm Capacity of Substation MVA'] !== null ? autolinker.link(feature.properties['Firm Capacity of Substation MVA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Reverse Power Capability MVA</strong><br />' + (feature.properties['Reverse Power Capability MVA'] !== null ? autolinker.link(feature.properties['Reverse Power Capability MVA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Measured Peak Demand mva</strong><br />' + (feature.properties['Measured Peak Demand mva'] !== null ? autolinker.link(feature.properties['Measured Peak Demand mva'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Upstream Equipment Ratings 3Ph Make kA</strong><br />' + (feature.properties['Upstream Equipment Ratings 3Ph Make kA'] !== null ? autolinker.link(feature.properties['Upstream Equipment Ratings 3Ph Make kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Upstream Equipment Ratings 3Ph Break kA</strong><br />' + (feature.properties['Upstream Equipment Ratings 3Ph Break kA'] !== null ? autolinker.link(feature.properties['Upstream Equipment Ratings 3Ph Break kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Upstream Short Circuit Currents 3Ph Make kA</strong><br />' + (feature.properties['Upstream Short Circuit Currents 3Ph Make kA'] !== null ? autolinker.link(feature.properties['Upstream Short Circuit Currents 3Ph Make kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Upstream Short Circuit Currents 3Ph Break kA</strong><br />' + (feature.properties['Upstream Short Circuit Currents 3Ph Break kA'] !== null ? autolinker.link(feature.properties['Upstream Short Circuit Currents 3Ph Break kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Downstream Equipment Ratings 3Ph Make kA</strong><br />' + (feature.properties['Downstream Equipment Ratings 3Ph Make kA'] !== null ? autolinker.link(feature.properties['Downstream Equipment Ratings 3Ph Make kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Downstream Equipment Ratings 3Ph Break kA</strong><br />' + (feature.properties['Downstream Equipment Ratings 3Ph Break kA'] !== null ? autolinker.link(feature.properties['Downstream Equipment Ratings 3Ph Break kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Downstream Short Circuit Currents 3Ph Make kA</strong><br />' + (feature.properties['Downstream Short Circuit Currents 3Ph Make kA'] !== null ? autolinker.link(feature.properties['Downstream Short Circuit Currents 3Ph Make kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Downstream Short Circuit Currents 3Ph Break kA</strong><br />' + (feature.properties['Downstream Short Circuit Currents 3Ph Break kA'] !== null ? autolinker.link(feature.properties['Downstream Short Circuit Currents 3Ph Break kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Upstream Equipment Ratings 1Ph Make kA</strong><br />' + (feature.properties['Upstream Equipment Ratings 1Ph Make kA'] !== null ? autolinker.link(feature.properties['Upstream Equipment Ratings 1Ph Make kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Upstream Equipment Ratings 1Ph Break kA</strong><br />' + (feature.properties['Upstream Equipment Ratings 1Ph Break kA'] !== null ? autolinker.link(feature.properties['Upstream Equipment Ratings 1Ph Break kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Upstream Short Circuit Current 1Ph Make kA</strong><br />' + (feature.properties['Upstream Short Circuit Current 1Ph Make kA'] !== null ? autolinker.link(feature.properties['Upstream Short Circuit Current 1Ph Make kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Upstream Short Circuit Currents 1Ph Make kA</strong><br />' + (feature.properties['Upstream Short Circuit Currents 1Ph Make kA'] !== null ? autolinker.link(feature.properties['Upstream Short Circuit Currents 1Ph Make kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Downstream Equipment Ratings 1Ph Make kA</strong><br />' + (feature.properties['Downstream Equipment Ratings 1Ph Make kA'] !== null ? autolinker.link(feature.properties['Downstream Equipment Ratings 1Ph Make kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Downstream Equipment Ratings 1Ph Break kA</strong><br />' + (feature.properties['Downstream Equipment Ratings 1Ph Break kA'] !== null ? autolinker.link(feature.properties['Downstream Equipment Ratings 1Ph Break kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Downstream Short Circuit Currents 1Ph Make kA</strong><br />' + (feature.properties['Downstream Short Circuit Currents 1Ph Make kA'] !== null ? autolinker.link(feature.properties['Downstream Short Circuit Currents 1Ph Make kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Downstream Short Circuit Currents 1Ph Break kA</strong><br />' + (feature.properties['Downstream Short Circuit Currents 1Ph Break kA'] !== null ? autolinker.link(feature.properties['Downstream Short Circuit Currents 1Ph Break kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Demand Headroom MVA</strong><br />' + (feature.properties['Demand Headroom MVA'] !== null ? autolinker.link(feature.properties['Demand Headroom MVA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Generation Headroom MVA</strong><br />' + (feature.properties['Generation Headroom MVA'] !== null ? autolinker.link(feature.properties['Generation Headroom MVA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Fault Level Headroom kA</strong><br />' + (feature.properties['Fault Level Headroom kA'] !== null ? autolinker.link(feature.properties['Fault Level Headroom kA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Total Inferred Generation MVA</strong><br />' + (feature.properties['Total Inferred Generation MVA'] !== null ? autolinker.link(feature.properties['Total Inferred Generation MVA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Demand Headroom RAG</strong><br />' + (feature.properties['Demand Headroom RAG'] !== null ? autolinker.link(feature.properties['Demand Headroom RAG'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Generation Headroom RAG</strong><br />' + (feature.properties['Generation Headroom RAG'] !== null ? autolinker.link(feature.properties['Generation Headroom RAG'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Fault Level Headroom RAG</strong><br />' + (feature.properties['Fault Level Headroom RAG'] !== null ? autolinker.link(feature.properties['Fault Level Headroom RAG'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Aggregated Demand Headroom RAG</strong><br />' + (feature.properties['Aggregated Demand Headroom RAG'] !== null ? autolinker.link(feature.properties['Aggregated Demand Headroom RAG'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Aggregated Generation Headroom RAG</strong><br />' + (feature.properties['Aggregated Generation Headroom RAG'] !== null ? autolinker.link(feature.properties['Aggregated Generation Headroom RAG'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Upstream Demand Headroom RAG</strong><br />' + (feature.properties['Upstream Demand Headroom RAG'] !== null ? autolinker.link(feature.properties['Upstream Demand Headroom RAG'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Upstream Generation Headroom RAG</strong><br />' + (feature.properties['Upstream Generation Headroom RAG'] !== null ? autolinker.link(feature.properties['Upstream Generation Headroom RAG'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Upstream Demand Headroom</strong><br />' + (feature.properties['Upstream Demand Headroom'] !== null ? autolinker.link(feature.properties['Upstream Demand Headroom'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Upstream Generation Headroom</strong><br />' + (feature.properties['Upstream Generation Headroom'] !== null ? autolinker.link(feature.properties['Upstream Generation Headroom'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Generator Types</strong><br />' + (feature.properties['Generator Types'] !== null ? autolinker.link(feature.properties['Generator Types'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Generation Connected kVA</strong><br />' + (feature.properties['Generation Connected kVA'] !== null ? autolinker.link(feature.properties['Generation Connected kVA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Generation Offered Not Accepted kVA</strong><br />' + (feature.properties['Generation Offered Not Accepted kVA'] !== null ? autolinker.link(feature.properties['Generation Offered Not Accepted kVA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Generation Accepted Not Connected kVA</strong><br />' + (feature.properties['Generation Accepted Not Connected kVA'] !== null ? autolinker.link(feature.properties['Generation Accepted Not Connected kVA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Statement of Works</strong><br />' + (feature.properties['Statement of Works'] !== null ? autolinker.link(feature.properties['Statement of Works'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_NGEDDemandHeadroomPoints_13_0(feature) {
+            switch(String(feature.properties['Generation Headroom RAG'])) {
+                case 'Amber':
+                    return {
+                pane: 'pane_NGEDDemandHeadroomPoints_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(247,225,55,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(250,255,57,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Green':
+                    return {
+                pane: 'pane_NGEDDemandHeadroomPoints_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(61,128,53,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(84,176,74,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Red':
+                    return {
+                pane: 'pane_NGEDDemandHeadroomPoints_13',
+                radius: 8.0,
+                opacity: 1,
+                color: 'rgba(128,17,25,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,30,42,1.0)',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_NGEDDemandHeadroomPoints_13',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(90,130,231,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_NGEDDemandHeadroomPoints_13');
+        map.getPane('pane_NGEDDemandHeadroomPoints_13').style.zIndex = 413;
+        map.getPane('pane_NGEDDemandHeadroomPoints_13').style['mix-blend-mode'] = 'normal';
+        var layer_NGEDDemandHeadroomPoints_13 = new L.geoJson(json_NGEDDemandHeadroomPoints_13, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_NGEDDemandHeadroomPoints_13',
+            layerName: 'layer_NGEDDemandHeadroomPoints_13',
+            pane: 'pane_NGEDDemandHeadroomPoints_13',
+            onEachFeature: pop_NGEDDemandHeadroomPoints_13,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_NGEDDemandHeadroomPoints_13_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_NGEDDemandHeadroomPoints_13);
+        function pop_GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Generation Capacity Headroom</strong><br />' + (feature.properties['Generation Capacity Headroom'] !== null ? autolinker.link(feature.properties['Generation Capacity Headroom'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14_0() {
+            return {
+                pane: 'pane_GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(28,143,26,0.6784313725490196)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14');
+        map.getPane('pane_GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14').style.zIndex = 414;
+        map.getPane('pane_GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14').style['mix-blend-mode'] = 'normal';
+        var layer_GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14 = new L.geoJson(json_GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14',
+            layerName: 'layer_GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14',
+            pane: 'pane_GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14',
+            onEachFeature: pop_GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14,
+            style: style_GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14_0,
+        });
+        bounds_group.addLayer(layer_GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14);
+        function pop_GenerationCapacityHeadroomRed5kmBuffer_15(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Generation Headroom Capacity</strong><br />' + (feature.properties['Generation Headroom Capacity'] !== null ? autolinker.link(feature.properties['Generation Headroom Capacity'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_GenerationCapacityHeadroomRed5kmBuffer_15_0() {
+            return {
+                pane: 'pane_GenerationCapacityHeadroomRed5kmBuffer_15',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(146,19,0,0.6784313725490196)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_GenerationCapacityHeadroomRed5kmBuffer_15');
+        map.getPane('pane_GenerationCapacityHeadroomRed5kmBuffer_15').style.zIndex = 415;
+        map.getPane('pane_GenerationCapacityHeadroomRed5kmBuffer_15').style['mix-blend-mode'] = 'normal';
+        var layer_GenerationCapacityHeadroomRed5kmBuffer_15 = new L.geoJson(json_GenerationCapacityHeadroomRed5kmBuffer_15, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_GenerationCapacityHeadroomRed5kmBuffer_15',
+            layerName: 'layer_GenerationCapacityHeadroomRed5kmBuffer_15',
+            pane: 'pane_GenerationCapacityHeadroomRed5kmBuffer_15',
+            onEachFeature: pop_GenerationCapacityHeadroomRed5kmBuffer_15,
+            style: style_GenerationCapacityHeadroomRed5kmBuffer_15_0,
+        });
+        bounds_group.addLayer(layer_GenerationCapacityHeadroomRed5kmBuffer_15);
+        function pop_GenerationCapacityHeadroomGreen5kmBuffer_16(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Generation Headroom Capacity</strong><br />' + (feature.properties['Generation Headroom Capacity'] !== null ? autolinker.link(feature.properties['Generation Headroom Capacity'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_GenerationCapacityHeadroomGreen5kmBuffer_16_0() {
+            return {
+                pane: 'pane_GenerationCapacityHeadroomGreen5kmBuffer_16',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(28,143,26,0.6784313725490196)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_GenerationCapacityHeadroomGreen5kmBuffer_16');
+        map.getPane('pane_GenerationCapacityHeadroomGreen5kmBuffer_16').style.zIndex = 416;
+        map.getPane('pane_GenerationCapacityHeadroomGreen5kmBuffer_16').style['mix-blend-mode'] = 'normal';
+        var layer_GenerationCapacityHeadroomGreen5kmBuffer_16 = new L.geoJson(json_GenerationCapacityHeadroomGreen5kmBuffer_16, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_GenerationCapacityHeadroomGreen5kmBuffer_16',
+            layerName: 'layer_GenerationCapacityHeadroomGreen5kmBuffer_16',
+            pane: 'pane_GenerationCapacityHeadroomGreen5kmBuffer_16',
+            onEachFeature: pop_GenerationCapacityHeadroomGreen5kmBuffer_16,
+            style: style_GenerationCapacityHeadroomGreen5kmBuffer_16_0,
+        });
+        bounds_group.addLayer(layer_GenerationCapacityHeadroomGreen5kmBuffer_16);
+        function pop_DNODivide_17(feature, layer) {
+        }
+
+        function style_DNODivide_17_0() {
+            return {
+                pane: 'pane_DNODivide_17',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_DNODivide_17');
+        map.getPane('pane_DNODivide_17').style.zIndex = 417;
+        map.getPane('pane_DNODivide_17').style['mix-blend-mode'] = 'normal';
+        var layer_DNODivide_17 = new L.geoJson(json_DNODivide_17, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_DNODivide_17',
+            layerName: 'layer_DNODivide_17',
+            pane: 'pane_DNODivide_17',
+            onEachFeature: pop_DNODivide_17,
+            style: style_DNODivide_17_0,
+        });
+        bounds_group.addLayer(layer_DNODivide_17);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/DNODivide_17.png" /> DNO Divide': layer_DNODivide_17,'<img src="legend/GenerationCapacityHeadroomGreen5kmBuffer_16.png" /> Generation Capacity Headroom (Green) - 5km Buffer': layer_GenerationCapacityHeadroomGreen5kmBuffer_16,'<img src="legend/GenerationCapacityHeadroomRed5kmBuffer_15.png" /> Generation Capacity Headroom (Red) - 5km Buffer': layer_GenerationCapacityHeadroomRed5kmBuffer_15,'<img src="legend/GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14.png" /> Generation Capacity Headroom (General Investigation Areas) - 5km Buffer': layer_GenerationCapacityHeadroomGeneralInvestigationAreas5kmBuffer_14,'NGED Demand Headroom Points<br /><table><tr><td style="text-align: center;"><img src="legend/NGEDDemandHeadroomPoints_13_Amber0.png" /></td><td>Amber</td></tr><tr><td style="text-align: center;"><img src="legend/NGEDDemandHeadroomPoints_13_Green1.png" /></td><td>Green</td></tr><tr><td style="text-align: center;"><img src="legend/NGEDDemandHeadroomPoints_13_Red2.png" /></td><td>Red</td></tr><tr><td style="text-align: center;"><img src="legend/NGEDDemandHeadroomPoints_13_3.png" /></td><td></td></tr></table>': layer_NGEDDemandHeadroomPoints_13,'SSEN Demand Headroom RAG Points<br /><table><tr><td style="text-align: center;"><img src="legend/SSENDemandHeadroomRAGPoints_12_Amber0.png" /></td><td>Amber</td></tr><tr><td style="text-align: center;"><img src="legend/SSENDemandHeadroomRAGPoints_12_Green1.png" /></td><td>Green</td></tr><tr><td style="text-align: center;"><img src="legend/SSENDemandHeadroomRAGPoints_12_Red2.png" /></td><td>Red</td></tr></table>': layer_SSENDemandHeadroomRAGPoints_12,'Community Energy Groups - Tier 4<br /><table><tr><td style="text-align: center;"><img src="legend/CommunityEnergyGroupsTier4_11_Tier40.png" /></td><td>Tier 4</td></tr></table>': layer_CommunityEnergyGroupsTier4_11,'Community Energy Groups - Tier 3<br /><table><tr><td style="text-align: center;"><img src="legend/CommunityEnergyGroupsTier3_10_Tier30.png" /></td><td>Tier 3</td></tr></table>': layer_CommunityEnergyGroupsTier3_10,'Community Energy Groups - Tier 2<br /><table><tr><td style="text-align: center;"><img src="legend/CommunityEnergyGroupsTier2_9_Tier20.png" /></td><td>Tier 2</td></tr></table>': layer_CommunityEnergyGroupsTier2_9,'Community Energy Groups - Tier 1<br /><table><tr><td style="text-align: center;"><img src="legend/CommunityEnergyGroupsTier1_8_Tier10.png" /></td><td>Tier 1</td></tr></table>': layer_CommunityEnergyGroupsTier1_8,'Community Energy Groups - Tier 0 or Satellite<br /><table><tr><td style="text-align: center;"><img src="legend/CommunityEnergyGroupsTier0orSatellite_7_Tier00.png" /></td><td>Tier 0</td></tr></table>': layer_CommunityEnergyGroupsTier0orSatellite_7,'<img src="legend/TransitionTownFoENetwork_6.png" /> Transition Town & FoE Network': layer_TransitionTownFoENetwork_6,'<img src="legend/AlliedThirdSectorCommercialOrgs_5.png" /> Allied Third Sector/Commercial Orgs.': layer_AlliedThirdSectorCommercialOrgs_5,'<img src="legend/DormantorStalledGroups_4.png" /> Dormant or Stalled Groups': layer_DormantorStalledGroups_4,'<img src="legend/CommunityEnergyGroupOperationalAreas_3.png" /> Community Energy Group Operational Areas': layer_CommunityEnergyGroupOperationalAreas_3,'<img src="legend/SWLABoundaries_2.png" /> SW LA Boundaries': layer_SWLABoundaries_2,'<img src="legend/RedlineBoundary_1.png" /> Redline Boundary': layer_RedlineBoundary_1,"OpenStreetMap": layer_OpenStreetMap_0,}).addTo(map);
+        setBounds();
+        resetLabels([layer_SWLABoundaries_2,layer_CommunityEnergyGroupsTier3_10,layer_CommunityEnergyGroupsTier4_11]);
+        map.on("zoomend", function(){
+            resetLabels([layer_SWLABoundaries_2,layer_CommunityEnergyGroupsTier3_10,layer_CommunityEnergyGroupsTier4_11]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_SWLABoundaries_2,layer_CommunityEnergyGroupsTier3_10,layer_CommunityEnergyGroupsTier4_11]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_SWLABoundaries_2,layer_CommunityEnergyGroupsTier3_10,layer_CommunityEnergyGroupsTier4_11]);
+        });
+        </script>
+    </body>
+</html>
